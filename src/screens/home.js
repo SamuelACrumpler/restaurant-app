@@ -8,6 +8,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { ImageBackground,Image, StyleSheet, Text, View, Dimensions, Platform, PixelRatio  } from 'react-native';
 //import actuatedNormalize from "../component/actuSize"
 import Navbar from "../component/navbar"
+import Card from "../component/card"
+import MenuItem from "../component/menuitem"
+import MenuSection from "../component/menuSection"
 import { BackgroundImage, withTheme } from 'react-native-elements/dist/config';
 import { createNativeWrapper } from 'react-native-gesture-handler';
 const image = require("../images/burgertown.jpg");
@@ -33,13 +36,48 @@ function actuatedNormalize(size) {
 const Home = ({navigation}) => {
   const [headerSize,setHeaderSize] = useState(actuatedNormalize(10));
   const [headerStyle,setHeaderStyle] = useState({color : "black", fontSize: actuatedNormalize(10)});
+  const [boldColor, setBoldColor] = useState("#768FAC")
+  const [xsDisplay,setXSDisplay] = useState("none")
+  const [smDisplay,setSMDisplay] = useState("none")
+  const [mdDisplay,setMDDisplay] = useState("none")
+  const [lgDisplay,setLGDisplay] = useState("none")
+  const [mobileDisplay, setMobileDisplay] = useState("none")
+  const [desktopDisplay, setDesktopDisplay] = useState("none")
 
-
+      //xs < 576; sm >= 576; md >= 768; lg >= 992; xl >= 1200; xxl >= 1400;
 
   const test = () => {
     console.log("we did a resize")
 
   }
+
+  const items = () => {
+    let foods = [];
+    let food1 = {name: "Food 1", desc: "This food was for sure not blandly named. Trust the taste", price: "5.99"}
+    let food2 = {name: "Food 2", desc: "This food was for sure not blandly named. Trust the taste2", price: "7.99"}
+    let food3 = {name: "Food 3", desc: "This food was for sure not blandly named. Trust the taste3", price: "9.99"}
+    let food4 = {name: "Food 4", desc: "This food was for sure not blandly named. Trust the taste4", price: "11.99"}
+    let food5 = {name: "Food 5", desc: "This food was for sure not blandly named. Trust the taste5", price: "13.99"}
+    foods.push(food1);
+    foods.push(food2);
+    foods.push(food3);
+    foods.push(food4);
+    foods.push(food5);
+    return foods;
+  }
+
+  //h1-6 32,24,18.72, 16, 13.28, 10.72px
+
+  // const headerStyle = (num) =>{
+  //   let style = {}
+  //   switch(num){
+  //     case 1:
+  //     style = {fontWeight: "bold", }
+  //     break;
+
+  //   } 
+  //   return {}
+  // }
 
   const cardStyle = () => { //most likely will pass height through this function. Can also set the way things align by passing parameters if I choose to do so.
     return {flexDirection: 'row',justifyContent: 'center', alignItems: 'center'}
@@ -47,6 +85,42 @@ const Home = ({navigation}) => {
   const headersStyle = () => {
     return {color : "black", fontWeight: "bold", fontSize: actuatedNormalize(10), textAlign: 'center', justifyContent: 'center'}
 }
+
+  const handleResize = () => {
+    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
+    console.log('Width: '+ window.innerWidth)
+    console.log(typeof(window.innerWidth))
+
+    if(window.innerWidth <= 576){
+      setMobileDisplay('')
+      setDesktopDisplay('none')
+      setXSDisplay('')
+      setSMDisplay('none')
+      setMDDisplay('none')
+      setLGDisplay('none')
+    } else if ( window.innerWidth >= 576 && window.innerWidth <=767) {
+      setMobileDisplay('')
+      setDesktopDisplay('none')
+      setXSDisplay('none')
+      setSMDisplay('')
+      setMDDisplay('none')
+      setLGDisplay('none')
+    } else if ( window.innerWidth >= 767 && window.innerWidth <= 992) {
+      setMobileDisplay('none')
+      setDesktopDisplay('')
+      setXSDisplay('none')
+      setSMDisplay('none')
+      setMDDisplay('')
+      setLGDisplay('none')
+    } else if (window.innerWidth >= 992) {
+      setMobileDisplay('none')
+      setDesktopDisplay('')
+      setXSDisplay('none')
+      setSMDisplay('none')
+      setMDDisplay('none')
+      setLGDisplay('')
+    }
+  }
 
  ///0-----
   React.useEffect(() => {
@@ -66,17 +140,16 @@ const Home = ({navigation}) => {
 })
 
 React.useEffect(() => {
-  function handleResize() {
-    console.log('resized to: ', window.innerWidth, 'x', window.innerHeight)
-  
-}
-
+  handleResize()
   window.addEventListener('resize', handleResize)
 })
     
     return(
         <SafeAreaProvider style={{ alignItems: ''}}>
             <Navbar />
+
+        <View style={{maxWidth:'1080px', flexDirection:'column', justifyContent:'center', margin: "auto", backgroundColor:'whitesmoke', padding:'10px'}}>
+
             <View style={{height:"800px"}}>
               <BackgroundImage source={image} style={styles.image}>
                   <View style={styles.cLogo}>
@@ -87,98 +160,88 @@ React.useEffect(() => {
               </BackgroundImage>
               
             </View>
-            <View style={{flexDirection: 'row',justifyContent: '', alignItems: '', padding:"10px"}}>
-              
-                <View style={{backgroundColor:"blue", width: "32.5%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                  <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                    <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                  </View>
-                  <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                      <Text>Card Text would go here</Text>
-                  </View>
-                </View>
-                <View style={{backgroundColor:"red", height: "200px", width: "32.5%", margin:"0.5%", borderRadius: "10px"}}></View>
-                <View style={{backgroundColor:"red", height: "200px", width: "32.5%", margin:"0.5%", borderRadius: "10px"}}></View>
-            </View>
 
-            <View style={{flexDirection: 'row',justifyContent: '', alignItems: '', padding:"10px"}}>
-              
-                <View style={{backgroundColor:"blue", width: "24%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                  <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                    <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                  </View>
-                  <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                      <Text>Card Text would go here</Text>
-                  </View>
-                </View>
-
-                <View style={{backgroundColor:"blue", width: "24%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                  <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                    <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                  </View>
-                  <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                      <Text>Card Text would go here</Text>
-                  </View>
-                </View>
-
-                <View style={{ backgroundColor:"black", width: "24%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                    <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}>
-                    <Text>Hey I'm Here</Text>
-
-                      </BackgroundImage>
-                </View>
-
-                <View style={{backgroundColor:"blue", width: "24%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                  <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                    <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                  </View>
-                  <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                      <Text>Card Text would go here</Text>
-                  </View>
-                </View>
-
-                
+            <View style={{padding:"10px"}}>
+              <View>
+              <Text style={{fontWeight:"bold", fontSize:"24px", textDecorationLine:"underline", color: boldColor, textAlign: "center"}}>
+                  Header - About Us
+                </Text>
+                <Text>
+                  Brief descriptor of the restaurant would go where.
+                </Text>
+              </View>
               
             </View>
 
-            <View style={{flexDirection: 'row',justifyContent: '', alignItems: '', padding:"10px"}}>
+            <View style={{display: desktopDisplay, flexDirection: 'row'}}>
+                <View style={{width: "48%", marginRight: "4%"}}>
+                <MenuSection items={items()} boldColor={boldColor} name="Breakfast"/>
+
+                </View>
+                <View style={{width: "48%"}}>
+
+                <MenuSection items={items()} boldColor={boldColor} name="Sides"/>
+
+                </View>
+            </View>
+
+            <View style={{display: mobileDisplay, padding:"10px"}}>
+             
+                <MenuSection items={items()} boldColor={boldColor} name="Breakfast"/>
+                <MenuSection items={items()} boldColor={boldColor} name="Sides"/>
+            </View>
+
+            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: ''}}>
+              <View style={{width: "60%"}}>
+                <Text style={{fontWeight:"bold", fontSize:"36px", textDecorationLine:"underline", textAlign: "center", color: boldColor}}>Header - The History</Text>
+                <Text style={{padding:"2%"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+              </View>
+              <View style={{width: "40%"}}>
+                <Image source={image} style={{resizeMode: 'cover', height: "100%", borderRadius: "20px"}}></Image>
+              </View>
+            </View>
+
+            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: ''}}>
               
-              <View style={{backgroundColor:"blue", width: "24%", margin:"0.5%",  borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                  <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                </View>
-                <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                    <Text>Card Text would go here</Text>
-                </View>
+              <View style={{width: "40%"}}>
+                <BackgroundImage source={image} style={{resizeMode: 'cover', height: "100%"}}></BackgroundImage>
               </View>
-
-              <View style={{backgroundColor:"blue", width: "24%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                  <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                </View>
-                <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                    <Text>Card Text would go here</Text>
-                </View>
+              <View style={{width: "60%"}}>
+                <Text style={{fontWeight:"bold", fontSize:"36px", textDecorationLine:"underline", textAlign: "center", color: boldColor}}>Header - The History</Text>
+                <Text style={{padding:"2%"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
               </View>
+            </View>
+            
 
-              <View style={{backgroundColor:"blue", width: "49%", margin:"0.5%", borderRadius: "10px", borderStyle: "solid", borderWidth: "3px" }}>
-                <View style={{height: "250px", borderBottomWidth: "3px"}}>
-                  <BackgroundImage source={image} style={{resizeMode: "cover", height:"100%"}}/>
-                </View>
-                <View style={{height: "100px", borderBottomRightRadius:"5px", borderBottomLeftRadius:"5px", backgroundColor: "whitesmoke"}}>
-                    <Text>Card Text would go here</Text>
-                </View>
-              </View>
-
+            <View style={{flexDirection: 'row', height:"500px", justifyContent: '', alignItems: '', padding:"10px"}}>
               
+                <Card image={image} height="100%" width="33%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+                <Card image={image} height="100%" width="66%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+            </View>
+
+            <View style={{flexDirection: 'row', height:"500px", justifyContent: '', alignItems: '', padding:"10px"}}>
+              
+                <Card image={image} height="100%" width="25%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+                <Card image={image} height="100%" width="25%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="100%" dshow="none" dheight="15%" dbgcol="whitesmoke"/>
+                <Card image={image} height="100%" width="25%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+                <Card image={image} height="100%" width="25%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+            </View>
+
+            <View style={{flexDirection: 'row', height:"500px", justifyContent: '', alignItems: '', padding:"10px"}}>
+              
+              <Card image={image} height="100%" width="25%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="85%" dshow="" dheight="15%" dbgcol="whitesmoke"/>
+              <Card image={image} height="100%" width="75%" bgcol="black" margin="0.25%" radius="10px" bwidth="3px" iheight="100%" dshow="none" dheight="15%" dbgcol="whitesmoke"/>
+          </View>
+
             
           </View>
+
         </SafeAreaProvider>
     )
 
 }
 
-//h1-6 32,24,18.72, 16, 13.28, 10.72px
+
 
 const styles = StyleSheet.create({
     image: {
