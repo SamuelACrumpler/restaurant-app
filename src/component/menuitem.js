@@ -12,7 +12,7 @@ const MenuItem = (props) => {
             </Text>
             <View style={{flexDirection: "row"}}>
                 <Text style={{width: "90%", fontStyle:"italic"}}>{props.desc}</Text>
-                <Text style={{color:"red", width: "10%", textAlign: "right", marginRight: "0.5%"}}>{"$"+props.price}</Text>
+                <Text style={{color:"red", width: "10%", textAlign: "right", marginRight: "0.5%", fontWeight:"bold"}}>{"$"+props.price}</Text>
             </View>
         </View>
        

@@ -148,7 +148,7 @@ React.useEffect(() => {
         <SafeAreaProvider style={{ alignItems: ''}}>
             <Navbar />
 
-        <View style={{maxWidth:'1080px', flexDirection:'column', justifyContent:'center', margin: "auto", backgroundColor:'whitesmoke', padding:'10px'}}>
+        <View style={{maxWidth:'', flexDirection:'column', justifyContent:'center', margin: "auto", backgroundColor:'whitesmoke', padding:''}}>
 
             <View style={{height:"800px"}}>
               <BackgroundImage source={image} style={styles.image}>
@@ -166,14 +166,14 @@ React.useEffect(() => {
               <Text style={{fontWeight:"bold", fontSize:"24px", textDecorationLine:"underline", color: boldColor, textAlign: "center"}}>
                   Header - About Us
                 </Text>
-                <Text>
-                  Brief descriptor of the restaurant would go where.
+                <Text style={{textAlign:"center"}}>
+                We love restaurants as much as you do. That’s why we’ve been helping them fill tables since 1999. Welcome to elixir restaurant
                 </Text>
               </View>
               
             </View>
 
-            <View style={{display: desktopDisplay, flexDirection: 'row'}}>
+            <View style={{display: desktopDisplay, flexDirection: 'row', padding:"10px"}}>
                 <View style={{width: "48%", marginRight: "4%"}}>
                 <MenuSection items={items()} boldColor={boldColor} name="Breakfast"/>
 
@@ -191,7 +191,7 @@ React.useEffect(() => {
                 <MenuSection items={items()} boldColor={boldColor} name="Sides"/>
             </View>
 
-            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: ''}}>
+            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: '',padding: "10px"}}>
               <View style={{width: "60%"}}>
                 <Text style={{fontWeight:"bold", fontSize:"36px", textDecorationLine:"underline", textAlign: "center", color: boldColor}}>Header - The History</Text>
                 <Text style={{padding:"2%"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
@@ -201,7 +201,7 @@ React.useEffect(() => {
               </View>
             </View>
 
-            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: ''}}>
+            <View style={{flexDirection: 'row', height:"200px", justifyContent: '', alignItems: '', padding: "10px"}}>
               
               <View style={{width: "40%"}}>
                 <BackgroundImage source={image} style={{resizeMode: 'cover', height: "100%"}}></BackgroundImage>
