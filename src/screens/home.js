@@ -9,7 +9,6 @@ import { ImageBackground,Image, StyleSheet, Text, View, Dimensions, Platform, Pi
 //import actuatedNormalize from "../component/actuSize"
 import Navbar from "../component/navbar"
 import Card from "../component/card"
-import MenuItem from "../component/menuitem"
 import MenuSection from "../component/menuSection"
 import { BackgroundImage, withTheme } from 'react-native-elements/dist/config';
 import { createNativeWrapper } from 'react-native-gesture-handler';
@@ -66,7 +65,6 @@ const Home = ({navigation}) => {
     return foods;
   }
 
-  //h1-6 32,24,18.72, 16, 13.28, 10.72px
 
   // const headerStyle = (num) =>{
   //   let style = {}
@@ -145,10 +143,10 @@ React.useEffect(() => {
 })
     
     return(
-        <SafeAreaProvider style={{ alignItems: ''}}>
+        <SafeAreaProvider style={{ alignItems: '', backgroundColor: 'white'}}>
             <Navbar />
 
-        <View style={{maxWidth:'', flexDirection:'column', justifyContent:'center', margin: "auto", backgroundColor:'whitesmoke', padding:''}}>
+        <View style={{maxWidth:'1366px', flexDirection:'column', justifyContent:'center', margin: "auto", backgroundColor:'whitesmoke', padding:''}}>
 
             <View style={{height:"800px"}}>
               <BackgroundImage source={image} style={styles.image}>
