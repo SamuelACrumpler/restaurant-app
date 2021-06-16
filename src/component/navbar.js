@@ -18,8 +18,11 @@ const Navbar = (navigation) =>{
                     <View style={{justifyContent:"center", alignItems:"center", padding: "1%"}}>
                         <Link to="/Home">Home</Link>
                     </View>
-                    <View style={{justifyContent:"center", alignItems:"center"}}>
+                    <View style={{justifyContent:"center", alignItems:"center", padding: "1%"}}>
                         <Link to="/Menu">Menu</Link>
+                    </View>
+                    <View style={{justifyContent:"center", alignItems:"center"}}>
+                        <Link to="/Locations">Locations</Link>
                     </View>
                     
                     
